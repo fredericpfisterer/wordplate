@@ -57,3 +57,22 @@ add_filter('excerpt_more', function () {
 add_filter('excerpt_length', function () {
     return 101;
 });
+
+
+$fields = [
+    acf_image(['name' => 'image', 'label' => 'Image']),
+    acf_text(['name' => 'title', 'label' => 'Title']),
+];
+
+$location = [
+    [
+        acf_location('post_type', 'page')
+    ],
+];
+
+acf_field_group([
+    'title' => 'About',
+    'fields' => $fields,
+    'style' => 'default',
+    'location' => $location,
+]);

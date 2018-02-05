@@ -5,20 +5,21 @@ module.exports = function (shipit) {
     }
   });
 
-  shipit.task('git', function () {
+  shipit.blTask('git', function () {
     return shipit.remote('git pull', {cwd: '/srv/users/serverpilot/apps/wordplate/'});
   });
 
-  shipit.task('pwd', function () {
+  shipit.blTask('composer', function () {
+    return shipit.remote('composer install', {cwd: '/srv/users/serverpilot/apps/wordplate/'});
+  });
+
+  shipit.task('build', function () {
     return shipit.remote('yarn production', {cwd: '/srv/users/serverpilot/apps/wordplate/'});
+  });
+
+  shipit.task('deploy', function () {
+    shipit.start('git', 'composer', 'build');
   });
 
 };
 
-
-// git clone
-// composer install
-// yarn
-// yarn production
-// wp db export db.sql
-// replace utf8mb4_unicode_520_ci with utf8mb4_unicode_ci
