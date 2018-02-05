@@ -3,7 +3,7 @@
 @import '~include-media/dist/_include-media.scss';
 
 body{
-    background-color: red;
+    background-color: green;
     @include media("<=tablet") {
         background-color: blue;
     }
